@@ -27,6 +27,6 @@ class ApiUpAction:
 
 
 class ApiDownAction:
-    def __init__(self, api: Api, error: str):
+    def __init__(self, api: Api, msg: str = ''):
         self.api = api
-        self.error = error
+        self.msg = msg
