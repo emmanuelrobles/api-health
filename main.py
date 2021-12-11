@@ -4,6 +4,7 @@ import json
 import rx
 from rx import from_iterable, interval
 from rx.operators import *
+from rx.scheduler import ThreadPoolScheduler
 
 from actions import ApiActionTypes
 from api_health import check_api_health
@@ -18,8 +19,8 @@ async def main():
     apis = get_apis_from_json(json_data)
 
     await from_iterable(apis).pipe(
-        flat_map(lambda api: rx.merge(interval(json_data['refresh']).pipe(map(lambda _: api)), rx.of(api))),
-        flat_map(lambda api: rx.from_callable(lambda: check_api_health(api))),
+        flat_map(lambda api: rx.merge(interval(json_data['refresh'],ThreadPoolScheduler()).pipe(map(lambda _: api)), rx.of(api))),
+        flat_map(lambda api: rx.from_callable(lambda: check_api_health(api), ThreadPoolScheduler())),
         do_action_when(ApiActionTypes.api_up, lambda action: log_success(action.payload.api)),
         do_action_when(ApiActionTypes.api_down, lambda action: log_failure(action.payload.api))
     )
