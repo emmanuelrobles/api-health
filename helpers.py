@@ -18,3 +18,8 @@ def get_apis_from_json(json_data: dict) -> List[Api]:
 # Do action on action_type
 def do_action_when(action_type: str, callback: Callable[[Action], None]) -> Callable[[Observable], Observable]:
     return operators.do_action(lambda action: callback(action) if action.action_type == action_type else None)
+
+
+def of_type(action_type: str) -> Callable[[Observable], Observable]:
+    return operators.filter(lambda action: action.action_type == action_type)
+
