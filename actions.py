@@ -1,7 +1,7 @@
 from enum import Enum
-from typing import List
 
 from models import Api, Action, ApiUpAction, CheckApiAction, ApiDownAction, NewApiStatusAction, ApiStatusChangeAction
+
 
 # Maybe for future usage
 def on_check_api(api: Api) -> Action[CheckApiAction]:

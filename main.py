@@ -9,7 +9,7 @@ from rx.scheduler import ThreadPoolScheduler
 from actions import ApiActionTypes, on_new_api_status, on_api_status_change
 from api_health import check_api_health
 from helpers import get_apis_from_json, do_action_when, of_type
-from models import Api, Action, ApiStatusEnum
+from models import Action, ApiStatusEnum
 from notifications import teams_build_new_api_payload, notify_request
 
 
