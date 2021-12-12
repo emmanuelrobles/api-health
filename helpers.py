@@ -10,7 +10,8 @@ def get_apis_from_json(json_data: dict) -> List[Api]:
 
     apis = []
     for json_api in json_apis:
-        apis.append(Api(json_api['url'], json_api['check_method'], json_api['env']))
+        for env in json_api['env']:
+            apis.append(Api(json_api['url'].format(env), json_api['check_method']))
 
     return apis
 

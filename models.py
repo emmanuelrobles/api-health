@@ -5,10 +5,9 @@ T = TypeVar("T")
 
 
 class Api:
-    def __init__(self, url: str, check_method: int, env: str):
+    def __init__(self, url: str, check_method: int):
         self.url = url
         self.check_method = check_method
-        self.env = env
 
 
 class Action(Generic[T]):

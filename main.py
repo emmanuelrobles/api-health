@@ -2,7 +2,7 @@ import asyncio
 import json
 
 import rx
-from rx import from_iterable, interval, subject
+from rx import from_iterable, interval
 from rx.operators import *
 from rx.scheduler import ThreadPoolScheduler
 
