@@ -75,6 +75,7 @@ async def main():
 
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    t = loop.create_task(main())
-    loop.run_until_complete(t)
+    new_loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(new_loop)
+    t = new_loop.create_task(main())
+    new_loop.run_until_complete(t)

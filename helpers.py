@@ -11,7 +11,12 @@ def get_apis_from_json(json_data: dict) -> List[Api]:
     apis = []
     for json_api in json_apis:
         for env in json_api['env']:
-            apis.append(Api(json_api['url'].format(env), json_api['check_method']))
+            url: str = json_api['url']
+
+            if url.endswith('/'):
+                url = url[:-1]
+
+            apis.append(Api(url.format(env), json_api['check_method']))
 
     return apis
 
